@@ -41,7 +41,7 @@ public class SeleniumTest {
             Assertions.fail(errorString);
         }
     }
-
+        //verificaçao com selenium se toda as cidades foram adicionadas e posterior teste
     @Test
     public void test() throws Exception {
         boolean ok = false;

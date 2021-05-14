@@ -17,9 +17,9 @@ public class AirQualityService {
 
     private static final String URL = "http://api.weatherbit.io/v2.0/current/airquality?city=";
 
-    /**
-     * Salvar a cidade em cache
-     */
+
+      //Salvar a cidade em cache
+
     public void saveCity(String city) {
         cache.addCity(city);
     }
@@ -41,9 +41,8 @@ public class AirQualityService {
         cache.saveAirQuality(city, airQuality);
     }
 
-    /**
-     * Qualidade da cidade atraves da api,  caso seja null colocará um miss
-     */
+
+     //Qualidade da cidade atraves da api,  caso seja null colocará um miss
     public AirQualityInfo[] getAirQuality(String city) {
 
         if (!cache.isValid(city)) {

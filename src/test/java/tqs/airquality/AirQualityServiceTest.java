@@ -81,7 +81,7 @@ class AirQualityServiceTest {
      *
      *
      */
-
+            //obter todas as cidades e verificar seu tamanho
      @Test
      public void Test_GetAll() {
 
@@ -101,7 +101,7 @@ class AirQualityServiceTest {
 
 
      //Test method: HashMap<String, String> getStatistics()
-
+        //verificar se possui as 3 chaves
      @Test
      public void Statistics_GetStatistics_Return() {
 
@@ -120,7 +120,7 @@ class AirQualityServiceTest {
             .containsValues(String.valueOf(hit), String.valueOf(misses), cities.toString());
      }
 
-
+        //verificar a qualidade se possui, se a api retorna a mesma
      //Test method: AirQualityInfo[] getAirQuality(String city)
      @Test
      public void ValidCity_Air() {
@@ -138,25 +138,6 @@ class AirQualityServiceTest {
          assertEquals("223.12", info.getSO2());
          assertEquals("1.5", info.getNO2());
      }
-
-
-
-     @Test
-     public void InvalidCity_Air() {
-        String invalidCity = "invalid";
-
-        AirQualityInfo[] returned = airQualityService.getAirQuality(invalidCity);
-
-        AirQualityInfo info= airQualityService.getAirQuality(invalidCity)[0];
-        assertThat(returned)
-                .hasSize(1);
-        assertEquals(null, info.getAQI());
-        assertEquals(null, info.getCO());
-        assertEquals(null, info.getSO2());
-        assertEquals(null, info.getNO2());
-        assertEquals(null, info.getO3());
-
-    }
 
 
 

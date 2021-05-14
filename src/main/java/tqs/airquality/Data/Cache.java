@@ -32,6 +32,7 @@ public class Cache {
         this.hit=0;
         this.misses=0;
         this.names = new LinkedList<>();
+
     }
 
 

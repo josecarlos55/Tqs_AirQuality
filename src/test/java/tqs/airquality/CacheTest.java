@@ -18,7 +18,9 @@ class CacheTest {
 
     @Test
     public void testget_andAdd(){
+
         testGetStatistics();
+
         testAddStatistics();
     }
 
@@ -58,6 +60,8 @@ class CacheTest {
 
         assertThat(expected).isEqualTo(found);
     }
+
+    //numero de requets ao sistema é correto
     @Test
     void cacheRequests(){
         String city0 = "Paraiba";
@@ -77,15 +81,14 @@ class CacheTest {
         cache.searchInCache(city2);
         cache.searchInCache(city3);
 
-        System.out.println(cache.getHits());
-        System.out.println(cache.getHits());
-        System.out.println(cache.getMisses());
-        System.out.println(cache.getMisses());
+
 
         assertEquals(8, this.cache.getNrequests());
 
 
     }
+        //teste de adiçao de statistics com misses e hites, maneira que encontrei
+
 
     @Test
     private void testAddStatistics() {
@@ -142,7 +145,7 @@ class CacheTest {
                 .contains(city0, city1,city2,city3)
                 .doesNotContain("Lisboa");
     }
-
+    //verificar se a cache possui todas as cidades
     @Test
     private void testGetCities() {
         List<String> cities = cache.getCities();
@@ -154,7 +157,7 @@ class CacheTest {
                         "Pelotas", "Petrópolis", "Taubaté", "Macaé", "Porto Alegre", "Manaus","Fortaleza","Maringá","Bahia");
     }
 
-
+        //verificaçao de cidade invalida
     @Test
     public void testInvalidCity() {
         boolean res0 = cache.isValid("jijij");
@@ -183,6 +186,7 @@ class CacheTest {
         assertThat(comparetest.toString()).isEqualTo(airQ.toString());
         assertThat(comparetest.getData().toString()).isEqualTo(info.toString());
     }
+        //salvar air quality
 
     @Test
     public void testSaveAirQuality() {

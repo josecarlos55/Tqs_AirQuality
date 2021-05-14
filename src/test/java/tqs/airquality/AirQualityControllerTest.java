@@ -38,7 +38,7 @@ class AirQualityControllerTest {
 
       //Test method: List<String> getCities()
 
-
+    //vericação se o fiquei json possui as cinco cidades e verificação sua adição.
     @Test
     public void TestCities_ReturnJson() throws Exception {
         List<String> allCities = new ArrayList<>();
@@ -64,7 +64,7 @@ class AirQualityControllerTest {
 
 
       //Test method: HashMap<String, String> getStatistics()
-
+        // verificação se o json possui os 3 atributos corretos
     @Test
     public void TestCities_ReturnStatsJson() throws Exception {
         List<String> allCities = new ArrayList<>();
@@ -94,7 +94,7 @@ class AirQualityControllerTest {
 
 
      //Test method: AirQualityInfo[] getCityAirQuality(@PathVariable(value = "city") String city)
-
+    //verificação se o ficheiro json possui todas as chaves
     @Test
     public void GetAirQuality_ReturnAirQualityInfo() throws Exception {
         AirQualityInfo info = new AirQualityInfo("32", "68.2071", "205", "1.51429", "6");
@@ -116,7 +116,7 @@ class AirQualityControllerTest {
 
     }
 
-     //Test method: AirQualityInfo[] getCityAirQuality(@PathVariable(value = "city") String city)
+     //Verificação se com cidade invalidade nao retorna nada
 
     @Test
     public void GetCityDoesNotExist_ReturnNothing() throws Exception {
