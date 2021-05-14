@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AirQ Brasil</title>
+</head>
+<style>
+
+</style>
+<body onload="setUp()">
+<div class="container" >
+            <h1>Air Quality Brasil</h1>
+        </div>
+    <div class="jumbotron">
+        <div  class="row d-flex justify-content-center" >
+            <h2>Escolha uma cidade:</h2>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <select id="selectCity"></select>
+            <button onclick="search()" type="button" id="info">Obter informação</button>
+        </div>
+
+    </div>
+    <br>
+    <div id="div0" class="row d-flex justify-content-center"></div>
+</div>
+    <script>
+        function setUp() {
+            const drop = document.getElementById("selectCity");
+            const json = fetch("http://localhost:8080/api/airQuality/cities")
+                .then((response) => response.json())
+                .then(function (data) {
+                    for (id in data) {
+                        const city = data[id];
+                        const  option = document.createElement("option");
+                        option.innerHTML = city;
+                        option.value = city;
+                        drop.appendChild(option);
+                    }
+                    ;
+                })
+        }
+        function search() {
+            var c = document.getElementById("selectCity");
+            var city = c.options[c.selectedIndex].value;
+            fetch('http://localhost:8080/api/airQuality/'+city)
+                .then(res => res.json())
+                .then(json => listAirQualityInfo(json));
+        }
+
+        function listAirQualityInfo(json) {
+            var div = document.getElementById("div0");
+            div.innerHTML = "";
+
+            var p1 = document.createElement("p");
+            var text1 = document.createTextNode("Índice de qualidade do ar: " + json[0]["aqi"]);
+            p1.appendChild(text1);
+            div.append(p1);
+
+            var p2 = document.createElement("p");
+            var text2 = document.createTextNode("Concentração O3(µg / m³): " + json[0]["o3"]);
+            p2.appendChild(text2);
+            div.append(p2);
+
+            var p3 = document.createElement("p");
+            var text3 = document.createTextNode("Concentração CO(µg / m³): " + json[0]["co"]);
+            p3.appendChild(text3);
+            div.append(p3);
+
+            var p4 = document.createElement("p");
+            var text4 = document.createTextNode("Concentração SO2(µg / m³): " + json[0]["so2"]);
+            p4.appendChild(text4);
+            div.append(p4);
+
+            var p5 = document.createElement("p");
+            var text5 = document.createTextNode("Concentração NO2(µg / m³): " + json[0]["no2"]);
+            p5.appendChild(text5);
+            div.append(p5);
+
+        }
+    </script>
+</body>
+</html>
